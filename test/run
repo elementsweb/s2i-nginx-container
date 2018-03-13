@@ -115,14 +115,14 @@ test_usage() {
 }
 
 test_connection() {
-  echo "Testing HTTP connection (http://localhost:${test_port})"
+  echo "Testing HTTP connection (http://$(container_ip):$(container_port))"
   local max_attempts=10
   local sleep_time=1
   local attempt=1
   local result=1
   while [ $attempt -le $max_attempts ]; do
-    echo "Sending GET request to http://localhost:${test_port}/index.html"
-    response_code=$(curl -s -w %{http_code} -o /dev/null http://$localhost:${test_port}/index.html)
+    echo "Sending GET request to http://$(container_ip):$(container_port)/"
+    response_code=$(curl -s -w %{http_code} -o /dev/null http://$(container_ip):$(container_port)/)
     status=$?
     if [ $status -eq 0 ]; then
       if [ $response_code -eq 200 ]; then
