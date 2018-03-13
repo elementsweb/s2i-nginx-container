@@ -16,11 +16,11 @@ fi
 #
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
-  mv /tmp/artifacts/. ./
+  mv /tmp/artifacts/. /usr/local/nginx/html/
 fi
 
 echo "---> Installing application source..."
-cp -Rf /tmp/src/. ./
+cp -Rf /tmp/src/. /usr/local/nginx/html/
 
 echo "---> Building application from source..."
 # TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
