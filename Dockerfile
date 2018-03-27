@@ -39,8 +39,14 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 # Override the default nginx config
 COPY ./s2i/nginx.conf /usr/local/nginx/conf/nginx.conf
 
+ENV NGINX_DIR /usr/local/nginx
+
 # Allow user 1001 to access everything for nginx
-RUN chown -R 1001:1001 /usr/local/nginx
+RUN touch ${NGINX_DIR}/logs/error.log \
+    && touch ${NGINX_DIR}/logs/access.log \
+    && chown -R 1001:0 $NGINX_DIR \
+    && chmod -R a+rwx ${NGINX_DIR}/logs \
+    && chmod -R ug+rwx ${NGINX_DIR}
 
 # TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 /opt/app-root

@@ -73,7 +73,8 @@ prepare() {
 }
 
 run_test_application() {
-  docker run --rm --cidfile=${cid_file} -p ${test_port} ${IMAGE_NAME}-testapp
+  # -u  specifies to run as current user (assumes current user is a non-root user)
+  docker run --rm --cidfile=${cid_file} -u $(id -u $(whoami)) -p ${test_port} ${IMAGE_NAME}-testapp
 }
 
 cleanup() {
