@@ -5,8 +5,9 @@ services:
 
 before_script:
 - wget https://github.com/openshift/source-to-image/releases/download/v1.1.9a/source-to-image-v1.1.9a-40ad911d-linux-amd64.tar.gz -O /tmp/source-to-image-v1.1.9a-40ad911d-linux-amd64.tar.gz
-- tar -xvf /tmp/source-to-image-v1.1.9a-40ad911d-linux-amd64.tar.gz -C ./bin
-- export PATH=$PATH:$PWD/bin/
+- mkdir -p /tmp/source-to-image-v1.1.9a
+- tar -xvf /tmp/source-to-image-v1.1.9a-40ad911d-linux-amd64.tar.gz -C /tmp/source-to-image-v1.1.9a
+- export PATH=$PATH:/tmp/source-to-image-v1.1.9a/
 
 script:
 - make test
