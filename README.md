@@ -1,4 +1,5 @@
 # s2i-nginx-container
+[![Build Status](https://travis-ci.org/elementsweb/s2i-nginx-container.svg?branch=master)](https://travis-ci.org/elementsweb/s2i-nginx-container)
 An Openshift source-to-image base container for an Nginx web server.
 
 Features extended from `centos/s2i-base-centos7`:
